@@ -1,5 +1,10 @@
 {
     "title": "DragonService SSO",
-    "navigation.homepage": "Homepage",
-    "navigation.imprint": "Imprint"
+    "login": "Login",
+    "email": "E-Mail",
+    "password": "Password",
+    "register": "Register",
+    "forget": "Password forget",
+    "reset": "Password reset",
+    "imprint": "Imprint"
 }

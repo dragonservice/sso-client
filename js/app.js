@@ -6,7 +6,12 @@ var dependencies = [
     'ngRoute',
     'pascalprecht.translate',
 
-    require('./controllers/homepage.js'),
+    require('./controllers/login.js'),
+    require('./controllers/register.js'),
+    require('./controllers/forget.js'),
+    require('./controllers/reset.js'),
+
+    require('./controllers/navigation.js'),
     require('./controllers/imprint.js')
 ];
 

@@ -1,5 +1,10 @@
 {
     "title": "DragonService SSO",
-    "navigation.homepage": "Startseite",
-    "navigation.imprint": "Impressum"
+    "login": "Anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "register": "Registrieren",
+    "forget": "Passwort vergessen",
+    "reset": "Passwort zurücksetzen",
+    "imprint": "Impressum"
 }
