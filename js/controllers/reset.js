@@ -16,6 +16,10 @@ angular.module(module.exports, dependencies)
         }
     ])
     .controller('ResetCtrl', function ($scope) {
-        $scope.form = {};
-        $scope.submit = function () {};
+        $scope.user = {};
+        $scope.submit = function () {
+            $scope.$broadcast('show-errors-check-validity');
+            if ($scope.form.$valid) {
+            }
+        };
     });

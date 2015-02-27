@@ -16,6 +16,22 @@ angular.module(module.exports, dependencies)
         }
     ])
     .controller('RegisterCtrl', function ($scope) {
-        $scope.form = {};
-        $scope.submit = function () {};
+        $scope.user = {};
+        $scope.$watch('user.email', function () {
+            if ($scope.form.email.$error.alreadyinuse) {
+                $scope.form.email.$setValidity('alreadyinuse', true);
+                $scope.$broadcast('show-errors-check-validity');
+            }
+        });
+        $scope.submit = function () {
+            $scope.$broadcast('show-errors-check-validity');
+            if ($scope.form.$valid) {
+
+                // if email is already in use
+                $scope.form.email.$setValidity('alreadyinuse', false);
+
+
+                $scope.$broadcast('show-errors-check-validity');
+            }
+        };
     });
