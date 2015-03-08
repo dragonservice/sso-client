@@ -15,7 +15,7 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('LoginCtrl', function ($scope) {
+    .controller('LoginCtrl', function ($scope, $http) {
         $scope.user = {};
         $scope.$watch('user.email', function () {
             if ($scope.form.email.$error.unknown) {
@@ -32,15 +32,29 @@ angular.module(module.exports, dependencies)
         $scope.submit = function () {
             $scope.$broadcast('show-errors-check-validity');
             if ($scope.form.$valid) {
-
-                // if email is unknown
-                $scope.form.email.$setValidity('unknown', false);
-
-                // if password is wrong
-                $scope.form.password.$setValidity('wrong', false);
-
-
-                $scope.$broadcast('show-errors-check-validity');
+                $http
+                    .post(
+                        config.server + '/login',
+                        {
+                            email: $scope.user.email,
+                            password: $scope.user.password
+                        }
+                    )
+                    .success(function (data) {
+                        switch (data) {
+                            case 'unknown email':
+                                $scope.form.email.$setValidity('unknown', false);
+                                $scope.$broadcast('show-errors-check-validity');
+                                break;
+                            case 'wrong password':
+                                $scope.form.password.$setValidity('wrong', false);
+                                $scope.$broadcast('show-errors-check-validity');
+                                break;
+                            default:
+                                console.log('success', data);
+                                break;
+                        }
+                    });
             }
         };
     });
