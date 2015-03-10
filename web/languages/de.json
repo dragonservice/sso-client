@@ -13,5 +13,6 @@
     "forget": "Passwort vergessen",
     "forget-success": "Passwort vergessen E-Mail wurde versendet",
     "reset": "Passwort zurücksetzen",
+    "password-token": "Token falsch",
     "imprint": "Impressum"
 }

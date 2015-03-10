@@ -13,5 +13,6 @@
     "forget": "Password forget",
     "forget-success": "Password forget e-mail sent",
     "reset": "Password reset",
+    "password-token": "Token wrong",
     "imprint": "Imprint"
 }
