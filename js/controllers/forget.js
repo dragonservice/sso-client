@@ -18,12 +18,14 @@ angular.module(module.exports, dependencies)
     .controller('ForgetCtrl', function ($scope, $http) {
         $scope.user = {};
         $scope.$watch('user.email', function () {
+            $scope.success = false;
             if ($scope.form.email.$error.unknown) {
                 $scope.form.email.$setValidity('unknown', true);
                 $scope.$broadcast('show-errors-check-validity');
             }
         });
         $scope.submit = function () {
+            $scope.success = false;
             $scope.$broadcast('show-errors-check-validity');
             if ($scope.form.$valid) {
                 $http
@@ -38,7 +40,7 @@ angular.module(module.exports, dependencies)
                             $scope.form.email.$setValidity('unknown', false);
                             $scope.$broadcast('show-errors-check-validity');
                         } else {
-                            console.log('success', data);
+                            $scope.success = true;
                         }
                     });
             }

@@ -11,6 +11,7 @@
     "register": "Registrieren",
     "email-alreadyinuse": "E-Mail bereits vergeben",
     "forget": "Passwort vergessen",
+    "forget-success": "Passwort vergessen E-Mail wurde versendet",
     "reset": "Passwort zurücksetzen",
     "imprint": "Impressum"
 }

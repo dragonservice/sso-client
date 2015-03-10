@@ -11,6 +11,7 @@
     "register": "Register",
     "email-alreadyinuse": "E-Mail already in use",
     "forget": "Password forget",
+    "forget-success": "Password forget e-mail sent",
     "reset": "Password reset",
     "imprint": "Imprint"
 }
