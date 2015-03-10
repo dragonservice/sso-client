@@ -15,7 +15,7 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('ForgetCtrl', function ($scope) {
+    .controller('ForgetCtrl', function ($scope, $http) {
         $scope.user = {};
         $scope.$watch('user.email', function () {
             if ($scope.form.email.$error.unknown) {
@@ -26,12 +26,21 @@ angular.module(module.exports, dependencies)
         $scope.submit = function () {
             $scope.$broadcast('show-errors-check-validity');
             if ($scope.form.$valid) {
-
-                // if email is already in use
-                $scope.form.email.$setValidity('unknown', false);
-
-
-                $scope.$broadcast('show-errors-check-validity');
+                $http
+                    .post(
+                        config.server + '/forget',
+                        {
+                            email: $scope.user.email
+                        }
+                    )
+                    .success(function (data) {
+                        if (data == 'unknown email') {
+                            $scope.form.email.$setValidity('unknown', false);
+                            $scope.$broadcast('show-errors-check-validity');
+                        } else {
+                            console.log('success', data);
+                        }
+                    });
             }
         };
     });
