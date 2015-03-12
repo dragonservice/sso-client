@@ -3,7 +3,9 @@
 // Serves the forget for the application
 
 module.exports = 'controllers/forget';
-var dependencies = [];
+var dependencies = [
+    require('../services/referrer')
+];
 
 angular.module(module.exports, dependencies)
     .config(['$routeProvider',
@@ -15,7 +17,7 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('ForgetCtrl', function ($scope, $http) {
+    .controller('ForgetCtrl', function ($scope, $http, referrer) {
         $scope.user = {};
         $scope.$watch('user.email', function () {
             $scope.success = false;
@@ -32,6 +34,12 @@ angular.module(module.exports, dependencies)
                     .post(
                         config.server + '/forget',
                         {
+                            referrer: function () {
+                                var data = referrer.get();
+                                if (data) {
+                                    return data.referrer;
+                                }
+                            }(),
                             email: $scope.user.email
                         }
                     )

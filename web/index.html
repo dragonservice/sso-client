@@ -25,6 +25,9 @@
             </ul>
         </nav>
     </div>
+    <div class="jumbotron" ng-controller="BackCtrl" ng-show="data">
+        <h1><a ng-href="{{ data.back.href }}">{{ data.back.name }}</a></h1>
+    </div>
     <div ng-view></div>
     <footer class="footer">
         <nav>

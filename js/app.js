@@ -13,6 +13,7 @@ var dependencies = [
     require('./controllers/reset.js'),
 
     require('./controllers/navigation.js'),
+    require('./controllers/back.js'),
     require('./controllers/imprint.js')
 ];
 

@@ -3,19 +3,28 @@
 // Serves the login for the application
 
 module.exports = 'controllers/login';
-var dependencies = [];
+var dependencies = [
+    require('../services/referrer')
+];
 
 angular.module(module.exports, dependencies)
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
+                .when('/login/:referrer', {
+                    templateUrl: 'views/login.html',
+                    controller: 'LoginCtrl'
+                })
                 .when('/', {
                     templateUrl: 'views/login.html',
                     controller: 'LoginCtrl'
                 });
         }
     ])
-    .controller('LoginCtrl', function ($scope, $http) {
+    .controller('LoginCtrl', function ($scope, $http, $routeParams, referrer) {
+        if ($routeParams.referrer) {
+            referrer.set($routeParams.referrer);
+        }
         $scope.user = {};
         $scope.$watch('user.email', function () {
             if ($scope.form.email.$error.unknown) {
@@ -51,7 +60,7 @@ angular.module(module.exports, dependencies)
                                 $scope.$broadcast('show-errors-check-validity');
                                 break;
                             default:
-                                console.log('success', data);
+                                referrer.success(data);
                                 break;
                         }
                     });

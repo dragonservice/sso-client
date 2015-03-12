@@ -3,7 +3,9 @@
 // Serves the register for the application
 
 module.exports = 'controllers/register';
-var dependencies = [];
+var dependencies = [
+    require('../services/referrer')
+];
 
 angular.module(module.exports, dependencies)
     .config(['$routeProvider',
@@ -15,7 +17,7 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('RegisterCtrl', function ($scope, $http) {
+    .controller('RegisterCtrl', function ($scope, $http, referrer) {
         $scope.user = {};
         $scope.$watch('user.email', function () {
             if ($scope.form.email.$error.alreadyinuse) {
@@ -39,7 +41,7 @@ angular.module(module.exports, dependencies)
                             $scope.form.email.$setValidity('alreadyinuse', false);
                             $scope.$broadcast('show-errors-check-validity');
                         } else {
-                            console.log('success', data);
+                            referrer.success(data);
                         }
                     });
             }
