@@ -10,19 +10,17 @@ angular.module(module.exports, dependencies)
         var data = {};
         return {
             set: function (referrer) {
-                data.referrer = referrer;
-                data.back = {
-                    name: '',
-                    href: ''
-                };
-                data.success = '';
+                if (config.referrers[referrer]) {
+                    data.referrer = referrer;
+                    data.config = config.referrers[referrer];
+                }
             },
             get: function () {
                 return data;
             },
             success: function (session) {
                 if (data) {
-                    location.href = data.success.replace('%session%', session);
+                    location.href = data.config.success.replace('%session%', session);
                 }
             }
         };
