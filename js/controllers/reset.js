@@ -21,9 +21,10 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('ResetCtrl', function ($scope, $http, $routeParams, referrer) {
+    .controller('ResetCtrl', function ($scope, $http, $routeParams, $location, referrer) {
         if ($routeParams.referrer) {
             referrer.set($routeParams.referrer);
+            $location.path('/reset/' + $routeParams.token);
         }
         $scope.user = {};
         $scope.submit = function () {

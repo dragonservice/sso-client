@@ -21,9 +21,10 @@ angular.module(module.exports, dependencies)
                 });
         }
     ])
-    .controller('LoginCtrl', function ($scope, $http, $routeParams, referrer) {
+    .controller('LoginCtrl', function ($scope, $http, $routeParams, $location, referrer) {
         if ($routeParams.referrer) {
             referrer.set($routeParams.referrer);
+            $location.path('/');
         }
         $scope.user = {};
         $scope.$watch('user.email', function () {
