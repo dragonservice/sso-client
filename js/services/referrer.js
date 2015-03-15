@@ -1,6 +1,6 @@
 "use strict";
 
-// Service for the redirects after Login/Register or Back
+// Service for the redirects after login/register or back
 
 module.exports = 'services/referrer';
 var dependencies = [];
