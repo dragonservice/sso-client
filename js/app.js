@@ -12,8 +12,8 @@ var dependencies = [
     require('./controllers/forget.js'),
     require('./controllers/reset.js'),
 
+    require('./controllers/referrer.js'),
     require('./controllers/navigation.js'),
-    require('./controllers/back.js'),
     require('./controllers/imprint.js')
 ];
 

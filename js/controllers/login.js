@@ -15,6 +15,10 @@ angular.module(module.exports, dependencies)
                     templateUrl: 'views/login.html',
                     controller: 'LoginCtrl'
                 })
+                .when('/login', {
+                    templateUrl: 'views/login.html',
+                    controller: 'LoginCtrl'
+                })
                 .when('/', {
                     templateUrl: 'views/login.html',
                     controller: 'LoginCtrl'
@@ -24,7 +28,8 @@ angular.module(module.exports, dependencies)
     .controller('LoginCtrl', function ($scope, $http, $routeParams, $location, referrer) {
         if ($routeParams.referrer) {
             referrer.set($routeParams.referrer);
-            $location.path('/');
+        } else {
+            referrer.set();
         }
         $scope.user = {};
         $scope.$watch('user.email', function () {

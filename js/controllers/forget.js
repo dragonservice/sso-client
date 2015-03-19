@@ -11,13 +11,22 @@ angular.module(module.exports, dependencies)
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
+                .when('/forget/:referrer', {
+                    templateUrl: 'views/forget.html',
+                    controller: 'ForgetCtrl'
+                })
                 .when('/forget', {
                     templateUrl: 'views/forget.html',
                     controller: 'ForgetCtrl'
                 });
         }
     ])
-    .controller('ForgetCtrl', function ($scope, $http, referrer) {
+    .controller('ForgetCtrl', function ($scope, $http, $routeParams, referrer) {
+        if ($routeParams.referrer) {
+            referrer.set($routeParams.referrer);
+        } else {
+            referrer.set();
+        }
         $scope.user = {};
         $scope.$watch('user.email', function () {
             $scope.success = false;

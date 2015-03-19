@@ -11,13 +11,22 @@ angular.module(module.exports, dependencies)
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
+                .when('/register/:referrer', {
+                    templateUrl: 'views/register.html',
+                    controller: 'RegisterCtrl'
+                })
                 .when('/register', {
                     templateUrl: 'views/register.html',
                     controller: 'RegisterCtrl'
                 });
         }
     ])
-    .controller('RegisterCtrl', function ($scope, $http, referrer) {
+    .controller('RegisterCtrl', function ($scope, $http, $routeParams, referrer) {
+        if ($routeParams.referrer) {
+            referrer.set($routeParams.referrer);
+        } else {
+            referrer.set();
+        }
         $scope.user = {};
         $scope.$watch('user.email', function () {
             if ($scope.form.email.$error.alreadyinuse) {

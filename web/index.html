@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="app" ng-controller="ReferrerCtrl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,17 +16,19 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right" ng-controller="NavigationCtrl">
-                <li role="presentation" ng-class="{ active: isActive('/') }">
-                    <a href="#/" translate="login"></a>
+                <li role="presentation"
+                    ng-class="{ active: isActive('/') || isActive('/login') || isActive('/login/' + referrer.referrer) }">
+                    <a ng-href="#/login/{{ referrer.referrer }}" translate="login"></a>
                 </li>
-                <li role="presentation" ng-class="{ active: isActive('/register') }">
-                    <a href="#/register" translate="register"></a>
+                <li role="presentation"
+                    ng-class="{ active: isActive('/register') || isActive('/register/' + referrer.referrer) }">
+                    <a ng-href="#/register/{{ referrer.referrer }}" translate="register"></a>
                 </li>
             </ul>
         </nav>
     </div>
-    <div class="jumbotron" ng-controller="BackCtrl" ng-show="data.config.back">
-        <h1><a ng-href="{{ data.config.back.href }}">{{ data.config.back.name }}</a></h1>
+    <div class="jumbotron" ng-show="referrer.config.back">
+        <h1><a ng-href="{{ referrer.config.back.href }}">{{ referrer.config.back.name }}</a></h1>
     </div>
     <div ng-view></div>
     <footer class="footer">

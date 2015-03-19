@@ -19,7 +19,7 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary" ng-click="submit()" translate="login"></button>
-            <a href="#/forget" translate="forget"></a>
+            <a ng-href="#/forget/{{ referrer.referrer }}" translate="forget"></a>
         </div>
     </div>
 </form>
