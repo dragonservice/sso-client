@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Service for the redirects after login/register or back
 

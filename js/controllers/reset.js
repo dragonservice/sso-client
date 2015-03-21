@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Serves the reset for the application
 
